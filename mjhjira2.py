@@ -19,10 +19,16 @@ keys = sorted([project.key for project in projects])[2:5]
 # Get an issue.
 issue = jira.issue('JRA-1330')
 
+print (issue.fields.project.key)             # 'JRA'
+print (issue.fields.issuetype.name)          # 'New Feature'
+print (issue.fields.reporter.displayName)    # 'Mike Cannon-Brookes [Atlassian]'                
+
+
 # Find all comments made by Atlassians on this issue.
 atl_comments = [comment for comment in issue.fields.comment.comments
                 if re.search(r'@atlassian.com$', comment.author.emailAddress)]
-
+                
+                
 # Add a comment to the issue.
 #jira.add_comment(issue, 'Comment text')
 
